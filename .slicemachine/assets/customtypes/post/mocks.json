@@ -1,0 +1,51 @@
+{
+  "id": "ae1d92a2-c07f-4c2d-9897-475aaea29917",
+  "uid": "accusantium-voluptas-asperiores",
+  "type": "post",
+  "data": {
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72?w=900&h=500&fit=crop"
+    },
+    "title": "leverage out-of-the-box interfaces",
+    "subtitle": "repurpose next-generation systems",
+    "author": "repurpose synergistic action-items",
+    "content": [
+      {
+        "heading": "scale back-end niches",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Officia in eiusmod occaecat. Nulla aute ad consequat ad in minim dolore.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "transition turn-key deliverables",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Aliqua veniam sint eiusmod minim consectetur. Commodo pariatur ipsum occaecat deserunt. Commodo anim irure aliqua incididunt deserunt ullamco anim cillum quis officia.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "expedite front-end models",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Dolor mollit quis veniam exercitation aliqua magna Lorem non nostrud laborum consectetur proident pariatur tempor. Officia irure incididunt voluptate excepteur ea tempor voluptate aliquip cillum ullamco. Tempor pariatur sit nisi tempor ut.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}

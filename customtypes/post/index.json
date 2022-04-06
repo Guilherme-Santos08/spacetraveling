@@ -1,0 +1,71 @@
+{
+  "id": "post",
+  "label": "post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "slug",
+          "placeholder": ""
+        },
+        "type": "UID"
+      },
+      "banner": {
+        "config": {
+          "label": "banner",
+          "constraint": {},
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "title": {
+        "config": {
+          "label": "title",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "subtitle": {
+        "config": {
+          "label": "subtitle",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "author": {
+        "config": {
+          "label": "author",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "content": {
+        "config": {
+          "label": "content",
+          "placeholder": "",
+          "fields": {
+            "heading": {
+              "config": {
+                "label": "heading",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "body": {
+              "config": {
+                "label": "body",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              },
+              "type": "StructuredText"
+            }
+          }
+        },
+        "type": "Group"
+      }
+    }
+  }
+}
