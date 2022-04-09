@@ -12,14 +12,6 @@
         },
         "type": "UID"
       },
-      "banner": {
-        "config": {
-          "label": "banner",
-          "constraint": {},
-          "thumbnails": []
-        },
-        "type": "Image"
-      },
       "title": {
         "config": {
           "label": "title",
@@ -40,6 +32,14 @@
           "placeholder": ""
         },
         "type": "Text"
+      },
+      "banner": {
+        "config": {
+          "label": "banner",
+          "constraint": {},
+          "thumbnails": []
+        },
+        "type": "Image"
       },
       "content": {
         "config": {

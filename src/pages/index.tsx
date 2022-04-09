@@ -1,4 +1,8 @@
 import { GetStaticProps } from 'next';
+import Prismic from '@prismicio/client';
+import { useState } from 'react';
+import Card from '../components/Card';
+import Header from '../components/Header';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -24,13 +28,75 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home({ postsPagination }: HomeProps): JSX.Element {
+  const [posts, setPosts] = useState(postsPagination.results);
+  const [nextPage, setNextPage] = useState(postsPagination.next_page);
 
-// export const getStaticProps = async () => {
-//   // const prismic = getPrismicClient();
-//   // const postsResponse = await prismic.query(TODO);
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const morePost = async () => {
+    const postResult = await fetch(nextPage);
+    const dataPost = await postResult.json();
 
-//   // TODO
-// };
+    const newPost = [...posts, ...dataPost.results];
+    setNextPage(dataPost.next_page);
+    setPosts(newPost);
+  };
+
+  return (
+    <>
+      <Header />
+      <main className="content-global">
+        <section className={styles.section}>
+          {posts.map(post => (
+            <Card
+              key={post.uid}
+              uid={post.uid}
+              title={post.data.title}
+              subTitle={post.data.subtitle}
+              author={post.data.author}
+              time={post.first_publication_date}
+            />
+          ))}
+          {nextPage && (
+            <button type="button" className={styles.button} onClick={morePost}>
+              Carregar mais posts
+            </button>
+          )}
+        </section>
+      </main>
+    </>
+  );
+}
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const prismic = getPrismicClient();
+  const postsResponse = await prismic.query(
+    [Prismic.predicates.at('document.type', 'post')],
+    {
+      fetch: ['post.title', 'post.subtitle', 'post.author'],
+      pageSize: 1,
+    }
+  );
+
+  const posts = postsResponse.results.map((post: Post) => {
+    return {
+      uid: post.uid,
+      first_publication_date: post.first_publication_date,
+      data: {
+        title: post.data.title,
+        subtitle: post.data.subtitle,
+        author: post.data.author,
+      },
+    };
+  });
+
+  return {
+    props: {
+      postsPagination: {
+        next_page: postsResponse.next_page,
+        results: posts,
+      },
+    },
+    revalidate: 60 * 5, // Atualiza o banco a cada 5 minutos
+  };
+};

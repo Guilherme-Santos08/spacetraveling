@@ -1,1 +1,13 @@
-// TODO
+.section {
+  article + article {
+    margin-top: 3rem;
+  }
+}
+
+.button {
+  color: var(--highlight);
+  text-decoration: underline;
+  font-weight: 600;
+  background-color: transparent;
+  margin-top: 4rem;
+}
