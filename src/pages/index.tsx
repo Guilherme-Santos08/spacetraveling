@@ -30,15 +30,15 @@ interface HomeProps {
 
 export default function Home({ postsPagination }: HomeProps): JSX.Element {
   const [posts, setPosts] = useState(postsPagination.results);
-  const [nextPage, setNextPage] = useState(postsPagination.next_page);
+  const [loadMorePost, setLoadMorePost] = useState(postsPagination.next_page);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const morePost = async () => {
-    const postResult = await fetch(nextPage);
+    const postResult = await fetch(loadMorePost);
     const dataPost = await postResult.json();
 
     const newPost = [...posts, ...dataPost.results];
-    setNextPage(dataPost.next_page);
+    setLoadMorePost(dataPost.next_page);
     setPosts(newPost);
   };
 
@@ -57,7 +57,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               time={post.first_publication_date}
             />
           ))}
-          {nextPage && (
+          {loadMorePost && (
             <button type="button" className={styles.button} onClick={morePost}>
               Carregar mais posts
             </button>
