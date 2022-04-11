@@ -1,9 +1,7 @@
-import { ptBR } from 'date-fns/locale';
-import { format } from 'date-fns';
-
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import Link from 'next/link';
 import styles from './card.module.scss';
+import { formatDate } from '../../utils/formatDate';
 
 type cardProps = {
   uid: string;
@@ -35,11 +33,7 @@ export default function Card({
           <span>
             <FiCalendar />
           </span>
-          <time>
-            {format(new Date(time), 'dd MMM yyyy', {
-              locale: ptBR,
-            })}
-          </time>
+          <time>{formatDate(time)}</time>
         </p>
 
         <p>

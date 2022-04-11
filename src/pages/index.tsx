@@ -1,6 +1,9 @@
 import { GetStaticProps } from 'next';
 import Prismic from '@prismicio/client';
+
 import { useState } from 'react';
+import Head from 'next/head';
+
 import Card from '../components/Card';
 import Header from '../components/Header';
 
@@ -44,6 +47,9 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
 
   return (
     <>
+      <Head>
+        <title>spacetraveling</title>
+      </Head>
       <Header />
       <main className="content-global">
         <section className={styles.section}>
@@ -74,7 +80,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     [Prismic.predicates.at('document.type', 'post')],
     {
       fetch: ['post.title', 'post.subtitle', 'post.author'],
-      pageSize: 1,
+      pageSize: 2,
     }
   );
 

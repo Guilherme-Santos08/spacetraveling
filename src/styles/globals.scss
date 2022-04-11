@@ -31,6 +31,18 @@ a {
   cursor: pointer;
 }
 
+h1,
+h2,
+h3 {
+  color: var(--heading);
+}
+
+p,
+span {
+  color: var(--body);
+  line-height: 140%;
+}
+
 body {
   font-family: 'Inter';
   background-color: var(--background);
@@ -38,7 +50,7 @@ body {
 }
 
 .content-global {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 0 1rem;
 }

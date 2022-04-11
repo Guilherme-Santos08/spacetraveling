@@ -1,1 +1,58 @@
-// TODO
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.article {
+  .banner {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    img {
+      display: block;
+      height: 400px;
+      margin: 0 auto;
+      border-radius: 6px;
+    }
+  }
+}
+
+.header {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+
+  span {
+    margin-right: 0.5rem;
+  }
+
+  p + p {
+    margin-left: 1.5rem;
+  }
+}
+
+.postContent {
+  margin: 4rem 0;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    line-height: 140%;
+  }
+
+  p + p {
+    margin-top: 35px;
+  }
+
+  div + div {
+    margin-top: 4rem;
+  }
+}

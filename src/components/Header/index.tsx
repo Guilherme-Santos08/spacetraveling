@@ -7,7 +7,7 @@ export default function Header(): JSX.Element {
       <div className="content-global">
         <Link href="/">
           <a>
-            <img src="./Logo.png" alt="logo" />
+            <img src="../Logo.png" alt="logo" />
           </a>
         </Link>
       </div>
