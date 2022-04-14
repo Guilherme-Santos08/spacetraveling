@@ -54,7 +54,7 @@
   }
 
   ul {
-    margin: 1rem 0;
+    margin: 1rem 0 1rem 1.75rem;
     li {
       color: var(--body);
       line-height: 1.4;
@@ -63,5 +63,34 @@
 
   div + div {
     margin-top: 4rem;
+  }
+}
+
+.postPrevOrNext {
+  max-width: 900px;
+  padding: 1rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: var(--body);
+    font-size: 0.9rem;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+
+    .arrowLeft {
+      margin-left: 0.5rem;
+    }
+
+    .arrowRight {
+      margin-right: 0.5rem;
+    }
   }
 }

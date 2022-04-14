@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import Link from 'next/link';
 
 import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
@@ -10,11 +12,11 @@ import Head from 'next/head';
 import { getPrismicClient } from '../../services/prismic';
 import Header from '../../components/Header';
 
-import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 import { formatDate } from '../../utils/formatDate';
 
 interface Post {
+  uid: string;
   first_publication_date: string | null;
   data: {
     title: string;
@@ -33,9 +35,15 @@ interface Post {
 
 interface PostProps {
   post: Post;
+  nextPost: Post | null;
+  prevPost: Post | null;
 }
 
-export default function Post({ post }: PostProps): JSX.Element {
+export default function Post({
+  post,
+  nextPost,
+  prevPost,
+}: PostProps): JSX.Element {
   const router = useRouter();
 
   const calculateReadingTime = () => {
@@ -114,6 +122,36 @@ export default function Post({ post }: PostProps): JSX.Element {
           </div>
         </article>
       )}
+
+      <div className={styles.postPrevOrNext}>
+        {prevPost ? (
+          <Link href={`${prevPost.uid}`}>
+            <a>
+              <div>
+                <IoIosArrowBack />
+                <span className={styles.arrowLeft}>{prevPost.data.title}</span>
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <div />
+        )}
+
+        {nextPost ? (
+          <Link href={`${nextPost.uid}`}>
+            <a>
+              <div>
+                <span className={styles.arrowRight}>
+                  {nextPost?.data?.title}
+                </span>
+                <IoIosArrowForward />
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <div />
+        )}
+      </div>
     </>
   );
 }
@@ -161,9 +199,29 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
     },
   };
 
+  const nextPost = await prismic.query(
+    [Prismic.predicates.at('document.type', 'post')],
+    {
+      pageSize: 1,
+      orderings: '[document.first_publication_date]',
+      after: response.id,
+    }
+  );
+
+  const prevPost = await prismic.query(
+    [Prismic.predicates.at('document.type', 'post')],
+    {
+      pageSize: 1,
+      orderings: '[document.first_publication_date desc]',
+      after: response.id,
+    }
+  );
+
   return {
     props: {
       post,
+      nextPost: nextPost.results[0] ?? null,
+      prevPost: prevPost.results[0] ?? null,
     },
   };
 };
