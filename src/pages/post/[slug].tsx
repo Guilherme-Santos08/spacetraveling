@@ -38,6 +38,30 @@ interface PostProps {
 export default function Post({ post }: PostProps): JSX.Element {
   const router = useRouter();
 
+  const calculateReadingTime = () => {
+    const wordsOfHeading = post.data.content.reduce((acc, data) => {
+      if (data.heading) {
+        // Esta juntando o acc e o data
+        return [...acc, ...data.heading.split(' ')];
+      }
+
+      return [...acc];
+    }, []).length;
+
+    const wordsOfBody = RichText.asText(
+      post.data.content.reduce((acc, data) => {
+        // Jutando o acc e o data no mesmo array
+        return [...acc, ...data.body];
+      }, [])
+      // Tranformando tudo em string e calculando o tamanho
+    ).split(' ').length;
+
+    // Conta para poder saber em quantos minutos o usuario vai ler aquele texto
+    const readingTime = Math.ceil((wordsOfBody + wordsOfHeading) / 200);
+
+    return readingTime;
+  };
+
   return (
     <>
       <Head>
@@ -73,7 +97,7 @@ export default function Post({ post }: PostProps): JSX.Element {
                   <span>
                     <FiClock />
                   </span>
-                  4 min
+                  {calculateReadingTime()} min
                 </p>
               </div>
             </header>
