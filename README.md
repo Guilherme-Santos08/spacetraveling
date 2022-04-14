@@ -31,10 +31,10 @@ Primeiro vamos clonar o repositório
 
 ```bash
 # Abra o terminal e copie o código abaixo:
-$ git clone https://github.com/Guilherme-Santos08/ignite-challenger01-chapter3.git
+$ git clone https://github.com/Guilherme-Santos08/spacetraveling.git
 
 # Entre na pasta
-cd ignite-challenger01-chapter3
+cd spacetraveling
 
 # Instalar as dependências
 $ yarn
