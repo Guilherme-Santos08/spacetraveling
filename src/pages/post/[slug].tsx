@@ -124,12 +124,14 @@ export default function Post({
       )}
 
       <div className={styles.postPrevOrNext}>
-        {prevPost ? (
-          <Link href={`${prevPost.uid}`}>
+        {nextPost ? (
+          <Link href={`${nextPost.uid}`}>
             <a>
               <div>
                 <IoIosArrowBack />
-                <span className={styles.arrowLeft}>{prevPost.data.title}</span>
+                <span className={styles.arrowLeft}>
+                  {nextPost?.data?.title}
+                </span>
               </div>
             </a>
           </Link>
@@ -137,13 +139,11 @@ export default function Post({
           <div />
         )}
 
-        {nextPost ? (
-          <Link href={`${nextPost.uid}`}>
+        {prevPost ? (
+          <Link href={`${prevPost.uid}`}>
             <a>
               <div>
-                <span className={styles.arrowRight}>
-                  {nextPost?.data?.title}
-                </span>
+                <span className={styles.arrowRight}>{prevPost.data.title}</span>
                 <IoIosArrowForward />
               </div>
             </a>
@@ -175,11 +175,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<unknown> = async ({ params }) => {
   const { slug } = params;
 
   const prismic = getPrismicClient();
